@@ -7,20 +7,18 @@ import java.util.Random;
  * @author (seu nome) 
  * @version (um número da versão ou uma data)
  */
-public class WordGenerator
-{
-    // variáveis de instância - substitua o exemplo abaixo pelo seu próprio
+public class WordGenerator {
+    // variáveis de instância
     private ArrayList<String> words;
 
-    /**
-     * Construtor para objetos da classe WordGenerator
-     */
-    public WordGenerator()
-    {
+    // Construtor
+    public WordGenerator() {
         this.words = new ArrayList<>();
+        fillArrayList(); // Chama o método para preencher a lista de palavras
     }
 
-    private void fillArrayList(){
+    // Método para preencher a lista de palavras
+    private void fillArrayList() {
         words.add("boolean");
         words.add("break");
         words.add("byte");

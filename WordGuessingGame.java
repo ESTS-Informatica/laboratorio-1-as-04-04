@@ -7,10 +7,7 @@ public class WordGuessingGame {
     
     
     // Construtor
-    public WordGuessingGame(InputReader reader,WordGenerator wordGenerator) {
-        hiddenWord = "abc";
-        guessedWord = "___";
-        numberOfTries = 0;
+    public WordGuessingGame(InputReader reader, WordGenerator wordGenerator) {
         this.reader = reader;
         this.wordGenerator = wordGenerator;
         initializeHiddenWord();
@@ -18,15 +15,17 @@ public class WordGuessingGame {
     
     private void initializeHiddenWord() {
         hiddenWord = wordGenerator.generateWord();
+        guessedWord = "";
         for (int i = 0; i < hiddenWord.length(); i++) {
             guessedWord += "_";
         }
+        numberOfTries = 0;
     }
     
     // Métodos seletores
     public String getHiddenWord() {
         return hiddenWord;
-    }
+    } 
 
     public String getGuessedWord() {
         return guessedWord;
@@ -35,7 +34,10 @@ public class WordGuessingGame {
     public int getNumberOfTries() {
         return numberOfTries;
     }
-
+    
+    public void setHiddenWord(String hiddenWord){
+        this.hiddenWord = hiddenWord;
+    }
     // Método para exibir a palavra adivinhada
     public void showGuessedWord() {
         System.out.println(guessedWord);
@@ -77,5 +79,9 @@ public class WordGuessingGame {
             numberOfTries++;
         }
         showResult();
+    }
+    
+    public void reset(){
+        initializeHiddenWord();
     }
 }
