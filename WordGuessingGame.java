@@ -3,15 +3,26 @@ public class WordGuessingGame {
     private String guessedWord;
     private int numberOfTries;
     private InputReader reader;
-
+    private WordGenerator wordGenerator;
+    
+    
     // Construtor
-    public WordGuessingGame(InputReader reader) {
+    public WordGuessingGame(InputReader reader,WordGenerator wordGenerator) {
         hiddenWord = "abc";
         guessedWord = "___";
         numberOfTries = 0;
         this.reader = reader;
+        this.wordGenerator = wordGenerator;
+        initializeHiddenWord();
     }
-
+    
+    private void initializeHiddenWord() {
+        hiddenWord = wordGenerator.generateWord();
+        for (int i = 0; i < hiddenWord.length(); i++) {
+            guessedWord += "_";
+        }
+    }
+    
     // Métodos seletores
     public String getHiddenWord() {
         return hiddenWord;
@@ -34,21 +45,23 @@ public class WordGuessingGame {
         System.out.println("Bem Vindo");
     }
     
-    private void guess(char letter){
-        if(hiddenWord.contains(String.valueOf(letter)) && !guessedWord.contains(String.valueOf(letter))) {
+    private void guess(char letter) {
+        if (hiddenWord.contains(String.valueOf(letter)) && !guessedWord.contains(String.valueOf(letter))) {
             StringBuilder newGuessedWord = new StringBuilder(guessedWord);
+
             for (int i = 0; i < hiddenWord.length(); i++) {
                 if (hiddenWord.charAt(i) == letter) {
                     newGuessedWord.setCharAt(i, letter);
                 }
             }
+
             guessedWord = newGuessedWord.toString();
         }
     }
-    
+     
     private boolean isWordGuessed() {
         return guessedWord.equals(hiddenWord);
-    }
+    }  
     
     private void showResult() {
         System.out.println("Parabéns! Adivinhaste a palavra em " + numberOfTries + " tentativas.");
